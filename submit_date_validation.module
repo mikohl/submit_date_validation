@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Experiment to validate base fields of specific bundle type for an entity.
+ */
+
+use Drupal\Core\Entity\EntityTypeInterface;
+
+/**
+ * Implements hook_entity_bundle_field_info_alter().
+ */
+function submit_date_validation_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type) {
+  if (($entity_type->id() == "node")) {
+    $fields['created']->addConstraint('PublishDateOdd', []);
+  }
+}
